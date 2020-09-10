@@ -1,0 +1,9 @@
+.form__wrapper {
+  padding-bottom: 10px;
+}
+
+.budget__resetbutton {
+  background-color: red;
+  color: white;
+  float: right;
+}

@@ -6,7 +6,7 @@ const Month = (props) => {
   const [monthlyBudget, updateMonthlyBudget] = useState(null); 
   
   useEffect(() => {
-    updateMonthlyBudget(props.yearlyBudget/12);
+    updateMonthlyBudget(Math.floor(props.yearlyBudget/12));
   }, [props.yearlyBudget])
 
   return (

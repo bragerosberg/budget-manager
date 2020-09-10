@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Month from '../month/Month';
+import './budget.css';
 
 const Budget = () => {
   const [yearlyBudget, updateYearlyBudget] = useState("");
   const [budgetSet, setBudgetStatus] = useState(false);
-
-  useEffect(() => {
-  }, []);
 
   const handleChange = (event) => {
     const { target } = event;
@@ -20,15 +18,15 @@ const Budget = () => {
   };
 
   return budgetSet ? (
-    <div>
+    <section className="budget__wrapper">
       {console.log(yearlyBudget)}
-      <h1>Yearly budget: {yearlyBudget}</h1>
+      <h1>Budget: {yearlyBudget} kr</h1>
       <Month yearlyBudget={yearlyBudget} />
-      <button onClick={handleSubmit}>Start over</button>
-    </div>
+      <button className="budget__resetbutton" onClick={handleSubmit}>Start over</button>
+    </section>
   ) : (
-    <form className="App" onSubmit={handleSubmit}>
-      <h1>Enter your budget</h1>
+    <form className="form__wrapper" onSubmit={handleSubmit}>
+      <h1 className="form__header">Enter your budget</h1>
       <input
         type="number"
         name="budget"
