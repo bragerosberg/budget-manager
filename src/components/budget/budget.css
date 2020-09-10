@@ -7,3 +7,12 @@
   color: white;
   float: right;
 }
+
+.budget__header,
+.form__header {
+  margin: 0;
+}
+
+.waitingImage {
+  width: 80%;
+}
