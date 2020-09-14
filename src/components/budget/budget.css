@@ -1,18 +1,20 @@
-.form__wrapper {
-  padding-bottom: 10px;
+.month__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  background-color: #be524f;
 }
 
-.budget__resetbutton {
-  background-color: red;
-  color: white;
-  float: right;
+.month--section {
+  background-color: #ca5e03;
+  margin: 0.5em;
+  box-shadow: rgba(31, 26, 21, 0.452) 2px 2px 2px;
 }
 
-.budget__header,
-.form__header {
+.month__name {
+  margin-top: 0;
+}
+
+.month--section p {
   margin: 0;
-}
-
-.waitingImage {
-  width: 80%;
 }

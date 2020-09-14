@@ -1,0 +1,18 @@
+.form__wrapper {
+  padding-bottom: 10px;
+}
+
+.budget__resetbutton {
+  background-color: red;
+  color: white;
+  float: right;
+}
+
+.budget__header,
+.form__header {
+  margin: 0;
+}
+
+.waitingImage {
+  width: 80%;
+}
