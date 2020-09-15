@@ -4,10 +4,10 @@ import './month.css';
 const Month = (props) => {
   const [editMonth, editMonthState] = useState(false);
   const [usedMonth, setMonthUsed] = useState(null);
-  const [remainingMonth, updateMonthlyRemaining] = useState(0);
+  const [remainingMonth, updateMonthlyRemaining] = useState(props.monthlyBudget);
 
   useEffect(() => {
-    updateMonthlyRemaining(props.monthlyBudget);
+    updateMonthlyRemaining(props.monthlyBudget-usedMonth);
   }, [editMonth]);
 
   const clickHandler = () => {
