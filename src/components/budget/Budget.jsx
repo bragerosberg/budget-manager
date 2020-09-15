@@ -13,7 +13,7 @@ const Budget = (props) => {
   return (
       <section className="month__wrapper">
         {year.map(month => (
-          <Month monthlyBudget={monthlyBudget} month={month}/>    
+          <Month key={month.key} id={month.key} monthlyBudget={monthlyBudget} month={month.month}/>    
         ))}
       </section>
     )
