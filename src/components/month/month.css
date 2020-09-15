@@ -1,0 +1,13 @@
+.month--section {
+  background-color: #ca5e03;
+  margin: 0.5em;
+  box-shadow: rgba(31, 26, 21, 0.452) 2px 2px 2px;
+}
+
+.month__name {
+  margin-top: 0;
+}
+
+.month--section p {
+  margin: 0;
+}

@@ -7,7 +7,7 @@ const Month = (props) => {
     console.log(`You clicked ${props.month}`);
   }
   return (
-    <section onClick={clickHandler}>
+    <section className="month--section" onClick={clickHandler}>
       <h2 className="month__name">{props.month}</h2>
       <p>{props.monthlyBudget}</p>
     </section>
