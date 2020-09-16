@@ -16,6 +16,7 @@ const Month = (props) => {
   useEffect(() => {
     const total = expenses.reduce((accumulator, currentValue) => accumulator += parseInt(currentValue.amount), 0);
     setMonthUsed(total);
+    updateMonthlyRemaining(props.monthlyBudget - total);
   }, [expenses]);
 
   const handleClearExpenses = () => {
