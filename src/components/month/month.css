@@ -4,6 +4,22 @@
   box-shadow: rgba(31, 26, 21, 0.452) 2px 2px 2px;
 }
 
+.month__expenses {
+  background-color: #df6502;
+}
+
+.month__expenses p {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.month__expenses--table {
+  background-color: #995117;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .month__name {
   margin-top: 0;
 }
