@@ -1,18 +1,24 @@
-.form__wrapper {
-  padding-bottom: 10px;
+.form__header,
+.budget__header {
+  text-align: center;
+}
+
+.budget__header--wrapper {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .budget__resetbutton {
   background-color: red;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
   color: white;
-  float: right;
+  font-size: 1.5em;
 }
 
-.budget__header,
-.form__header {
-  margin: 0;
-}
+.form__wrapper {
+  display: flex;
+  flex-direction: column;
 
-.waitingImage {
-  width: 80%;
 }

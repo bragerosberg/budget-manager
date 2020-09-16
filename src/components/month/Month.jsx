@@ -61,7 +61,7 @@ const Month = (props) => {
               <p className="month__expenses--table__amount">{exp.amount}</p>
             </>
           ))}
-          <button onClick={handleClearExpenses}>Clear Expenses</button>
+          <button className="btn btn-danger" onClick={handleClearExpenses}>Clear Expenses</button>
         </div>
         <div>
           <form>
@@ -72,12 +72,13 @@ const Month = (props) => {
           </form>
         </div>
       </aside>
+      <button className="btn btn-info" onClick={clickHandler}>Go Back</button>
     </section>
   ) : (
     <section className="month--section">
       <h2 className="month__name">{props.month}</h2>
-      <p>{props.monthlyBudget}</p>
-      <button onClick={clickHandler}>Add expenses</button>
+      <p>{remainingMonth}/{props.monthlyBudget}</p>
+      <button className="btn btn-success" onClick={clickHandler}>Edit Month</button>
     </section>
   )
 }

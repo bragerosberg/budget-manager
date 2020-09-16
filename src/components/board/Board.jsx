@@ -19,9 +19,11 @@ const Board = () => {
 
   return budgetSet ? (
     <section className="budget__wrapper">
-      <h1 className="budget__header">Budget: {yearlyBudget}</h1>
+      <aside className="budget__header--wrapper">
+        <h1 className="budget__header">Budget: {yearlyBudget}</h1>
+        <button className="budget__resetbutton" onClick={handleSubmit}>X</button>
+      </aside>
       <Budget yearlyBudget={yearlyBudget} />
-      <button className="budget__resetbutton" onClick={handleSubmit}>Start over</button>
     </section>
   ) : (
     <aside>
@@ -30,7 +32,7 @@ const Board = () => {
         <input
           type="number"
           name="budget"
-          placeholder="Enter budget here"
+          placeholder="Enter yearly budget here"
           onChange={handleChange}
         />
         <button type="submit">Submit</button>
