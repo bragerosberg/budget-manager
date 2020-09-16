@@ -30,8 +30,8 @@
   height: 50px;
 }
 
-.month__expenses--numbers {
-  font-weight: 650;
+.month__expenses--numbers--header {
+  font-weight: 800;
 }
 
 .month__expenses--entry--amount {
@@ -40,6 +40,10 @@
 
 .month__expenses--entry {
   justify-content: center;
+}
+
+.month__expenses--table {
+  margin-bottom: 3em;
 }
 
 .month__expenses--entry p {
@@ -51,11 +55,17 @@
   font-size: 0.8em;
   color: white;
   background-color: red;
+  margin: 7.5px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .month__expenses--edit {
   background-image: url(https://i.imgur.com/xWSNVME.png);
   background-size: cover;
   height: 25px;
+  margin: 7.5px;
   width: 25px;
 }

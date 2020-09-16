@@ -67,9 +67,18 @@ const Month = (props) => {
       <h2 className="month__name">{props.month}</h2>
       <aside className="month__expenses">
         <section className="month__expenses--numbers">
-          <p>Budget: {props.monthlyBudget}</p>
-          <p>Remaining: {remainingMonth}</p>
-          <p>Used: {usedMonth}</p>
+          <>
+            <p className="month__expenses--numbers--header">Budget:</p> 
+            <p>{props.monthlyBudget}</p>
+          </>
+            <p className="month__expenses--numbers--header">Remaining:</p>
+            <p>{remainingMonth}</p>
+          <>
+          </>
+          <>
+            <p className="month__expenses--numbers--header">Used:</p> 
+            <p>{usedMonth}</p>
+          </>
         </section>
         <div className="month__expenses--table">
           {expenses.map(exp => (
