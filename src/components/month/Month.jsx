@@ -5,7 +5,7 @@ import Form from '../form/Form';
 import './month.css';
 
 const Month = (props) => {
-  const allExpenses = localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : [];
+  const allExpenses = localStorage.getItem(props.month) ? JSON.parse(localStorage.getItem(props.month)) : [];
 
   const [editMonth, editMonthState] = useState(false);
   const [usedMonth, setMonthUsed] = useState(0);
@@ -25,7 +25,7 @@ const Month = (props) => {
   }, [expenses]);
 
   useEffect(() => {
-    localStorage.setItem('expenses', JSON.stringify(expenses))
+    localStorage.setItem(props.month, JSON.stringify(expenses))
   }, [expenses])
 
   const handleClearExpenses = () => {
