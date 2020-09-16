@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Expense from '../expense/Expense';
+import { uuid } from 'uuidv4';
 import Form from '../form/Form';
 import './month.css';
 
@@ -36,10 +38,20 @@ const Month = (props) => {
     setAmount(event.target.value)
   }
 
+  const deleteExp = (e) => {
+    let exps = expenses;
+    exps = exps.filter(exp => exp.id !== e.target.id);
+    setExpenses(exps);
+    console.table(expenses);
+    console.log('Running')
+  }
+
   const handleSubmitForm = event => {
     event.preventDefault()
     if (name !== '' && amount > 0) {
-      const expense = { name, amount }
+      const id = uuid();
+      const expense = { name, amount, id }
+      console.log(expense);
       setExpenses([...expenses, expense])
       setName('')
       setAmount('')
@@ -61,9 +73,7 @@ const Month = (props) => {
         </section>
         <div className="month__expenses--table">
           {expenses.map(exp => (
-            <>
-              <p className="month__expenses--table__entry">{exp.name} - ${exp.amount}</p>
-            </>
+            <Expense deleteExp={deleteExp} exp={exp}/>
           ))}
         </div>
       </aside>
