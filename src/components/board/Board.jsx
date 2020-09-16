@@ -35,7 +35,7 @@ const Board = () => {
           placeholder="Enter yearly budget here"
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button className="btn btn-success" type="submit">Submit</button>
       </form>
     </aside>
   )

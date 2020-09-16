@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Form from '../form/Form';
 import './month.css';
 
 const Month = (props) => {
@@ -47,37 +48,41 @@ const Month = (props) => {
     }
   }
 
+
+
   return editMonth ? (
     <section className="month--section">
       <h2 className="month__name">{props.month}</h2>
       <aside className="month__expenses">
-        <p>Budget: {props.monthlyBudget}</p>
-        <p>Remaining: {remainingMonth}</p>
-        <p>Used: {usedMonth}</p>
+        <section className="month__expenses--numbers">
+          <p>Budget: {props.monthlyBudget}</p>
+          <p>Remaining: {remainingMonth}</p>
+          <p>Used: {usedMonth}</p>
+        </section>
         <div className="month__expenses--table">
           {expenses.map(exp => (
             <>
-              <p className="month__expenses--table__name">{exp.name}</p>
-              <p className="month__expenses--table__amount">{exp.amount}</p>
+              <p className="month__expenses--table__entry">{exp.name} - ${exp.amount}</p>
             </>
           ))}
-          <button className="btn btn-danger" onClick={handleClearExpenses}>Clear Expenses</button>
-        </div>
-        <div>
-          <form>
-            <input type="text" name="name" placeholder="Name of expense" value={name} onChange={handleName}/>
-          </form>
-          <form onSubmit={handleSubmitForm}>
-            <input type="number" name="amount" placeholder="0.00" value={amount} onChange={handleAmount}/>
-          </form>
         </div>
       </aside>
-      <button className="btn btn-info" onClick={clickHandler}>Go Back</button>
+      <div className="month__buttons">
+        <button className="month__buttons--goBack" onClick={clickHandler}/>
+        <Form 
+          handleSubmitForm={handleSubmitForm}
+          amount={amount}
+          name={name}
+          handleName={handleName}
+          handleAmount={handleAmount}
+        />
+        <button className="month__buttons--deletebtn" onClick={handleClearExpenses}/>
+      </div>
     </section>
   ) : (
     <section className="month--section">
       <h2 className="month__name">{props.month}</h2>
-      <p>{remainingMonth}/{props.monthlyBudget}</p>
+      <p>{usedMonth}/{props.monthlyBudget}</p>
       <button className="btn btn-success" onClick={clickHandler}>Edit Month</button>
     </section>
   )
