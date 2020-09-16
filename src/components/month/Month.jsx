@@ -5,10 +5,12 @@ import Form from '../form/Form';
 import './month.css';
 
 const Month = (props) => {
+  const allExpenses = localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : [];
+
   const [editMonth, editMonthState] = useState(false);
   const [usedMonth, setMonthUsed] = useState(0);
   const [remainingMonth, updateMonthlyRemaining] = useState(props.monthlyBudget);
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState(allExpenses);
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
 
@@ -21,6 +23,10 @@ const Month = (props) => {
     setMonthUsed(total);
     updateMonthlyRemaining(props.monthlyBudget - total);
   }, [expenses]);
+
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses))
+  }, [expenses])
 
   const handleClearExpenses = () => {
     setExpenses([]);
@@ -42,8 +48,6 @@ const Month = (props) => {
     let exps = expenses;
     exps = exps.filter(exp => exp.id !== e.target.id);
     setExpenses(exps);
-    console.table(expenses);
-    console.log('Running')
   }
 
   const handleSubmitForm = event => {
@@ -59,8 +63,6 @@ const Month = (props) => {
       console.log('Invalid expense name or the amount')
     }
   }
-
-
 
   return editMonth ? (
     <section className="month--section">
