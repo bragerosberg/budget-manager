@@ -10,24 +10,34 @@ const Board = () => {
   useEffect(() => {
     if(fetchStoredBudget!== "") setBudgetStatus(true);
   },[fetchStoredBudget])
-  
+
   const handleChange = (event) => {
     const { target } = event;
     const { value } = target;
     updateYearlyBudget(value);
   };
 
+  const resetBudget = () => {
+    handleSubmit();
+    localStorage.clear();
+    updateYearlyBudget("");
+  }
+
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
-    localStorage.setItem('budget', JSON.stringify(yearlyBudget))
-    setBudgetStatus(budgetSet => ! budgetSet);
+    if(yearlyBudget !== "") {
+      localStorage.setItem('budget', JSON.stringify(yearlyBudget))
+      setBudgetStatus(budgetSet => ! budgetSet);
+    } else {
+      alert('Invalid budget, please enter a valid number');
+    }
   };
 
   return budgetSet ? (
     <section className="budget__wrapper">
       <aside className="budget__header--wrapper">
         <h1 className="budget__header">Budget: {yearlyBudget}</h1>
-        <button className="budget__resetbutton" onClick={handleSubmit}>X</button>
+        <button className="budget__resetbutton" onClick={resetBudget}>X</button>
       </aside>
       <Budget yearlyBudget={yearlyBudget} />
     </section>
