@@ -7,8 +7,12 @@
   display: flex;
   justify-content: space-evenly;
 }
-.month__buttons {
+.month__buttons,
+.month__expenses--entry {
   display: flex;
+}
+
+.month__buttons {
   justify-content: space-between;
 }
 .month__buttons--deletebtn {
@@ -28,4 +32,30 @@
 
 .month__expenses--numbers {
   font-weight: 650;
+}
+
+.month__expenses--entry--amount {
+  color: greenyellow;
+}
+
+.month__expenses--entry {
+  justify-content: center;
+}
+
+.month__expenses--entry p {
+  margin: 0.5em;
+}
+
+.month__expenses--delete {
+  margin-left: 1em;
+  font-size: 0.8em;
+  color: white;
+  background-color: red;
+}
+
+.month__expenses--edit {
+  background-image: url(https://i.imgur.com/xWSNVME.png);
+  background-size: cover;
+  height: 25px;
+  width: 25px;
 }

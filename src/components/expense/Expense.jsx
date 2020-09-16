@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Expense = (props) => {
-  return (
-    <div className="month__expenses--table__entry">
+  const [toggleRemove, toggleRemoveStatus] = useState(false);
+  const handleEditClick = () => toggleRemoveStatus(!toggleRemove);
+
+  return toggleRemove ? (
+    <div className="month__expenses--entry">
       <p>{props.exp.name}</p>
       <p> - </p>
-      <p className="">${props.exp.amount}</p>
-      <button id={props.exp.id} onClick={props.deleteExp}>X</button>  
+      <p className="month__expenses--entry--amount">${props.exp.amount}</p>
+      <button className="month__expenses--edit" onClick={handleEditClick}/>
+      <button className="month__expenses--delete" id={props.exp.id} onClick={props.deleteExp}>X</button>  
+    </div>
+  ) : (
+    <div className="month__expenses--entry">
+      <p>{props.exp.name}</p>
+      <p> - </p>
+      <p className="month__expenses--entry--amount">${props.exp.amount}</p>
+      <button className="month__expenses--edit" onClick={handleEditClick}/>
     </div>
   )
 }
