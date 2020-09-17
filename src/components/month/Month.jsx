@@ -16,17 +16,17 @@ const Month = (props) => {
 
   useEffect(() => {
     updateMonthlyRemaining(props.monthlyBudget - usedMonth);
-  }, [props.monthlyBudget]);
+  }, [props.monthlyBudget, usedMonth]);
 
   useEffect(() => {
     const total = expenses.reduce((accumulator, currentValue) => accumulator += parseInt(currentValue.amount), 0);
     setMonthUsed(total);
     updateMonthlyRemaining(props.monthlyBudget - total);
-  }, [expenses]);
+  }, [props.monthlyBudget, expenses]);
 
   useEffect(() => {
     localStorage.setItem(props.month, JSON.stringify(expenses))
-  }, [expenses])
+  }, [props.month, expenses])
 
   const handleClearExpenses = () => {
     setExpenses([]);
