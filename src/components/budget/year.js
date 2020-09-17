@@ -48,6 +48,10 @@ const year = [
     key: uuid(),
     month: 'December'
   },
+  {
+    key: uuid(),
+    month: 'Buffer'
+  },
 ]
 
 export default year; 
