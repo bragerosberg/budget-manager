@@ -8,6 +8,7 @@ const Board = () => {
   const [yearlyBudget, updateYearlyBudget] = useState(fetchStoredBudget);
   const [budgetSet, setBudgetStatus] = useState(false);
   const [splitManually, setSplitManually] = useState(false);
+  const [bufferMonth, setBudgetMonth] = useState(false);
 
   useEffect(() => {
     if(fetchStoredBudget!== "") setBudgetStatus(true);
@@ -21,6 +22,10 @@ const Board = () => {
 
   const changeSplitMethod = () => {
     setSplitManually(!splitManually);
+  }
+
+  const changeBufferMonthState = () => {
+    setBudgetMonth(!bufferMonth);
   }
 
   const resetBudget = () => {
@@ -45,7 +50,7 @@ const Board = () => {
         <h1 className="budget__header">Budget: {yearlyBudget}</h1>
         <button className="budget__resetbutton" onClick={resetBudget}>X</button>
       </aside>
-      <Budget splitManually={splitManually} yearlyBudget={yearlyBudget} />
+      <Budget bufferMonth={bufferMonth} splitManually={splitManually} yearlyBudget={yearlyBudget} />
     </section>
   ) : (
     <aside>
@@ -59,7 +64,7 @@ const Board = () => {
         />
         <button className="btn btn-success" type="submit">Submit</button>
       </form>
-      <Settings changeSplitMethod={changeSplitMethod}/>
+      <Settings changeBufferMonthState={changeBufferMonthState} changeSplitMethod={changeSplitMethod}/>
     </aside>
   )
 }
