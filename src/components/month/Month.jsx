@@ -55,7 +55,6 @@ const Month = (props) => {
     if (name !== '' && amount > 0) {
       const id = uuid();
       const expense = { name, amount, id }
-      console.log(expense);
       setExpenses([...expenses, expense])
       setName('')
       setAmount('')

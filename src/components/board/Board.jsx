@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Budget from '../budget/Budget';
+import Settings from '../settings/Settings';
 import './board.css';
 
 const Board = () => {
   const fetchStoredBudget = localStorage.getItem('budget') ? JSON.parse(localStorage.getItem('budget')) : "";
   const [yearlyBudget, updateYearlyBudget] = useState(fetchStoredBudget);
   const [budgetSet, setBudgetStatus] = useState(false);
+  const [splitManually, setSplitManually] = useState(false);
 
   useEffect(() => {
     if(fetchStoredBudget!== "") setBudgetStatus(true);
@@ -16,6 +18,10 @@ const Board = () => {
     const { value } = target;
     updateYearlyBudget(value);
   };
+
+  const changeSplitMethod = () => {
+    setSplitManually(!splitManually);
+  }
 
   const resetBudget = () => {
     handleSubmit();
@@ -39,7 +45,7 @@ const Board = () => {
         <h1 className="budget__header">Budget: {yearlyBudget}</h1>
         <button className="budget__resetbutton" onClick={resetBudget}>X</button>
       </aside>
-      <Budget yearlyBudget={yearlyBudget} />
+      <Budget splitManually={splitManually} yearlyBudget={yearlyBudget} />
     </section>
   ) : (
     <aside>
@@ -53,6 +59,7 @@ const Board = () => {
         />
         <button className="btn btn-success" type="submit">Submit</button>
       </form>
+      <Settings changeSplitMethod={changeSplitMethod}/>
     </aside>
   )
 }
