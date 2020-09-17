@@ -4,15 +4,17 @@ import Settings from '../settings/Settings';
 import './board.css';
 
 const Board = () => {
-  const fetchStoredBudget = localStorage.getItem('budget') ? JSON.parse(localStorage.getItem('budget')) : "";
-  const [yearlyBudget, updateYearlyBudget] = useState(fetchStoredBudget);
+  const attemptSavedBudget  = localStorage.getItem('budget') ? JSON.parse(localStorage.getItem('budget')) : "";
+  const [yearlyBudget, updateYearlyBudget] = useState(attemptSavedBudget );
+
   const [budgetSet, setBudgetStatus] = useState(false);
+
   const [splitManually, setSplitManually] = useState(false);
   const [bufferMonth, setBudgetMonth] = useState(false);
 
   useEffect(() => {
-    if(fetchStoredBudget!== "") setBudgetStatus(true);
-  },[fetchStoredBudget])
+    if(attemptSavedBudget !== "") setBudgetStatus(true);
+  }, [attemptSavedBudget ])
 
   const handleChange = (event) => {
     const { target } = event;
@@ -56,12 +58,7 @@ const Board = () => {
     <aside>
       <form className="form__wrapper" onSubmit={handleSubmit}>
         <h1 className="form__header">Enter your budget</h1>
-        <input
-          type="number"
-          name="budget"
-          placeholder="Enter yearly budget here"
-          onChange={handleChange}
-        />
+        <input type="number" name="budget" placeholder="Enter yearly budget here" onChange={handleChange}/>
         <button className="btn btn-success" type="submit">Submit</button>
       </form>
       <Settings changeBufferMonthState={changeBufferMonthState} changeSplitMethod={changeSplitMethod}/>
