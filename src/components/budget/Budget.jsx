@@ -5,10 +5,10 @@ import './budget.css';
 
 const Budget = (props) => {
   const [monthlyBudget, updateMonthlyBudget] = useState(null);
-  const [updateManually, setManual] = useState(false);
-  const [bufferMonth, setBufferState] = useState(false);
 
-  // Updates setting booleans
+  const [addBufferMonth, setBufferState] = useState(false);
+  const [updateManually, setManual] = useState(false);
+
   useEffect(() => {
     setManual(props.splitManually);
     setBufferState(props.bufferMonth);
@@ -22,7 +22,7 @@ const Budget = (props) => {
     }
   }, [props.yearlyBudget, props.bufferMonth])
 
-  return bufferMonth ? (
+  return addBufferMonth ? (
       <section className="month__wrapper">
         {year.map(month => (
           <Month key={month.key} id={month.key} monthlyBudget={monthlyBudget} month={month.month}/>    
