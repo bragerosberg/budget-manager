@@ -5,12 +5,13 @@ import Form from '../form/Form';
 import './month.css';
 
 const Month = (props) => {
-  const allExpenses = localStorage.getItem(props.month) ? JSON.parse(localStorage.getItem(props.month)) : [];
+  const attemptSavedExpenses = localStorage.getItem(props.month) ? JSON.parse(localStorage.getItem(props.month)) : [];
+
+  const [remainingMonth, updateMonthlyRemaining] = useState(props.monthlyBudget);
+  const [expenses, setExpenses] = useState(attemptSavedExpenses);
+  const [usedMonth, setMonthUsed] = useState(0);
 
   const [editMonth, editMonthState] = useState(false);
-  const [usedMonth, setMonthUsed] = useState(0);
-  const [remainingMonth, updateMonthlyRemaining] = useState(props.monthlyBudget);
-  const [expenses, setExpenses] = useState(allExpenses);
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
 
@@ -19,7 +20,7 @@ const Month = (props) => {
   }, [props.monthlyBudget, usedMonth]);
 
   useEffect(() => {
-    const total = expenses.reduce((accumulator, currentValue) => accumulator += parseInt(currentValue.amount), 0);
+    const total = expenses.reduce((acc, cur) => acc += parseInt(cur.amount), 0);
     setMonthUsed(total);
     updateMonthlyRemaining(props.monthlyBudget - total);
   }, [props.monthlyBudget, expenses]);
@@ -28,36 +29,32 @@ const Month = (props) => {
     localStorage.setItem(props.month, JSON.stringify(expenses))
   }, [props.month, expenses])
 
-  const handleClearExpenses = () => {
-    setExpenses([]);
-  }
+  const handleClearExpenses = () => setExpenses([]);
 
-  const clickHandler = () => {
-    editMonthState(!editMonth);
-  }
+  const editToggle = () => editMonthState(!editMonth);
 
-  const handleName = event => {
-    setName(event.target.value)
+  const handleName = (e) => setName(e.target.value);
+  
+  const handleAmount = (e) => setAmount(e.target.value);
+
+  const deleteExpense = (e) => {
+    let expenseCopy = expenses;
+    expenseCopy = expenseCopy.filter(expense => expense.id !== e.target.id);
+    setExpenses(expenseCopy);
   }
   
-  const handleAmount = event => {
-    setAmount(event.target.value)
+  const addExpense = () => {
+    const id = uuid();
+    const expense = { name, amount, id }
+    setExpenses([...expenses, expense]);
+    setName('');
+    setAmount('');
   }
 
-  const deleteExp = (e) => {
-    let exps = expenses;
-    exps = exps.filter(exp => exp.id !== e.target.id);
-    setExpenses(exps);
-  }
-
-  const handleSubmitForm = event => {
-    event.preventDefault()
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
     if (name !== '' && amount > 0) {
-      const id = uuid();
-      const expense = { name, amount, id }
-      setExpenses([...expenses, expense])
-      setName('')
-      setAmount('')
+      addExpense();
     } else {
       console.log('Invalid expense name or the amount')
     }
@@ -66,29 +63,28 @@ const Month = (props) => {
   return editMonth ? (
     <section className="month--section">
       <h2 className="month__name">{props.month}</h2>
+      
       <aside className="month__expenses">
+
         <section className="month__expenses--numbers">
-          <div>
             <p className="month__expenses--numbers--header">Budget:</p> 
             <p>{props.monthlyBudget}</p>
-          </div>
             <p className="month__expenses--numbers--header">Remaining:</p>
             <p>{remainingMonth}</p>
-          <div>
-          </div>
-          <div>
             <p className="month__expenses--numbers--header">Used:</p> 
             <p>{usedMonth}</p>
-          </div>
         </section>
+
         <div className="month__expenses--table">
           {expenses.map(exp => (
-            <Expense deleteExp={deleteExp} exp={exp}/>
+            <Expense deleteExpense={deleteExpense} exp={exp}/>
           ))}
         </div>
+
       </aside>
+
       <div className="month__buttons">
-        <button className="month__buttons--goBack" onClick={clickHandler}/>
+        <button className="month__buttons--goBack" onClick={editToggle}/>
         <Form 
           handleSubmitForm={handleSubmitForm}
           amount={amount}
@@ -98,12 +94,13 @@ const Month = (props) => {
         />
         <button className="month__buttons--deletebtn" onClick={handleClearExpenses}/>
       </div>
+
     </section>
   ) : (
     <section className="month--section">
       <h2 className="month__name">{props.month}</h2>
       <p>{usedMonth}/{props.monthlyBudget}</p>
-      <button className="btn btn-success" onClick={clickHandler}>Edit Month</button>
+      <button className="btn btn-success" onClick={editToggle}>Edit Month</button>
     </section>
   )
 }
