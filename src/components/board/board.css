@@ -1,23 +1,50 @@
 .form__header,
-.budget__header {
+.budget__header,
+.form__input {
   text-align: center;
+}
+
+.form__header {
+  margin-top: 0.2em;
+}
+
+.form__input {
+  margin: 0 auto;
+  border-radius: 10px;
+  width: 75%;
+  margin-bottom: 1em;
+  padding: 0 1em 0 1em;
+  outline-width: 0;
 }
 
 .budget__header--wrapper {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ece9e6, #ffffff);
 }
 
 .budget__resetbutton {
-  background-color: red;
+  background: linear-gradient(to top, #ff416c, #ff4b2b);
   height: 50px;
   width: 50px;
   border-radius: 50%;
   color: white;
   font-size: 1.5em;
+  
+}
+
+.form__button {
+  background: linear-gradient(to top, #56ab2f, #a8e063);
+  color: white;
+  font-weight: 800;
+  padding: .5em;
 }
 
 .form__wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.budget__header {
+  color: linear-gradient(to top, #000000, #434343);
 }

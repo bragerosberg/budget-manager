@@ -100,7 +100,7 @@ const Month = (props) => {
     <section className="month--section">
       <h2 className="month__name">{props.month}</h2>
       <p>{usedMonth}/{props.monthlyBudget}</p>
-      <button className="btn btn-success" onClick={editToggle}>Edit Month</button>
+      <button className="month__button" onClick={editToggle}>Add Expenses</button>
     </section>
   )
 }

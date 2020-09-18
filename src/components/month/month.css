@@ -35,7 +35,7 @@
 }
 
 .month__expenses--entry--amount {
-  color: greenyellow;
+  color: rgb(101, 141, 40);
 }
 
 .month__expenses--entry {
@@ -54,7 +54,7 @@
   margin-left: 1em;
   font-size: 0.8em;
   color: white;
-  background-color: red;
+  background: linear-gradient(to top, #ff416c, #ff4b2b);
   margin: 7.5px;
   height: 25px;
   width: 25px;
@@ -68,4 +68,21 @@
   height: 25px;
   margin: 7.5px;
   width: 25px;
+}
+
+.month__name {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.month__button {
+  background: linear-gradient(to top, #76b852, #8dc26f);
+  margin-bottom: 1em;
+  color: white;
+  font-weight: 500;
+  border-radius: 10%;
+}
+
+.month__expenses--numbers--header {
+  color: rgb(67, 123, 156);
 }
