@@ -16,19 +16,15 @@ const Board = () => {
     if(attemptSavedBudget !== "") setBudgetStatus(true);
   }, [attemptSavedBudget ])
 
-  const handleChange = (event) => {
-    const { target } = event;
+  const handleChange = (e) => {
+    const { target } = e;
     const { value } = target;
     updateYearlyBudget(value);
   };
 
-  const changeSplitMethod = () => {
-    setSplitManually(!splitManually);
-  }
+  const changeSplitMethod = () => setSplitManually(!splitManually);
 
-  const changeBufferMonthState = () => {
-    setBudgetMonth(!bufferMonth);
-  }
+  const changeBufferMonthState = () => setBudgetMonth(!bufferMonth);
 
   const resetBudget = () => {
     handleSubmit();
@@ -36,8 +32,8 @@ const Board = () => {
     updateYearlyBudget("");
   }
 
-  const handleSubmit = (event) => {
-    if (event) event.preventDefault();
+  const handleSubmit = (e) => {
+    if (e) e.preDefault();
     if(yearlyBudget !== "") {
       localStorage.setItem('budget', JSON.stringify(yearlyBudget))
       setBudgetStatus(budgetSet => ! budgetSet);
