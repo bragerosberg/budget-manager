@@ -33,7 +33,7 @@ const Board = () => {
   }
 
   const handleSubmit = (e) => {
-    if (e) e.preDefault();
+    if (e) e.preventDefault();
     if(yearlyBudget !== "") {
       localStorage.setItem('budget', JSON.stringify(yearlyBudget))
       setBudgetStatus(budgetSet => ! budgetSet);
