@@ -45,7 +45,7 @@ const Board = () => {
   return budgetSet ? (
     <section className="budget__wrapper">
       <aside className="budget__header--wrapper">
-        <h1 className="budget__header">Budget: {yearlyBudget}</h1>
+        <h1 className="budget__header">Total: {yearlyBudget}</h1>
         <button className="budget__resetbutton" onClick={resetBudget}>X</button>
       </aside>
       <Budget bufferMonth={bufferMonth} splitManually={splitManually} yearlyBudget={yearlyBudget} />
@@ -53,9 +53,9 @@ const Board = () => {
   ) : (
     <aside>
       <form className="form__wrapper" onSubmit={handleSubmit}>
-        <h1 className="form__header">Enter your budget</h1>
-        <input type="number" name="budget" placeholder="Enter yearly budget here" onChange={handleChange}/>
-        <button className="btn btn-success" type="submit">Submit</button>
+        <h1 className="form__header">Budget Planner</h1>
+        <input type="number" name="budget" placeholder="Enter yearly budget here" className="form__input" onChange={handleChange}/>
+        <button className="form__button" type="submit">Submit</button>
       </form>
       <Settings changeBufferMonthState={changeBufferMonthState} changeSplitMethod={changeSplitMethod}/>
     </aside>
