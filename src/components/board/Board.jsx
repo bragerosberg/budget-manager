@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Budget from '../budget/Budget';
-import Settings from '../settings/Settings';
 import './board.css';
 
 const Board = () => {
@@ -9,8 +8,6 @@ const Board = () => {
 
   const [budgetSet, setBudgetStatus] = useState(false);
 
-  const [splitManually, setSplitManually] = useState(false);
-  const [bufferMonth, setBudgetMonth] = useState(false);
 
   useEffect(() => {
     if(attemptSavedBudget !== "") setBudgetStatus(true);
@@ -21,10 +18,6 @@ const Board = () => {
     const { value } = target;
     updateYearlyBudget(value);
   };
-
-  const changeSplitMethod = () => setSplitManually(!splitManually);
-
-  const changeBufferMonthState = () => setBudgetMonth(!bufferMonth);
 
   const resetBudget = () => {
     handleSubmit();
@@ -48,16 +41,15 @@ const Board = () => {
         <h1 className="budget__header">Total: {yearlyBudget}</h1>
         <button className="budget__resetbutton" onClick={resetBudget}>X</button>
       </aside>
-      <Budget bufferMonth={bufferMonth} splitManually={splitManually} yearlyBudget={yearlyBudget} />
+      <Budget yearlyBudget={yearlyBudget} />
     </section>
   ) : (
     <aside>
       <form className="form__wrapper" onSubmit={handleSubmit}>
-        <h1 className="form__header">Budget Planner</h1>
+        <h1 className="form__header">Budget Manager</h1>
         <input type="number" name="budget" placeholder="Enter yearly budget here" className="form__input" onChange={handleChange}/>
         <button className="form__button" type="submit">Submit</button>
       </form>
-      <Settings changeBufferMonthState={changeBufferMonthState} changeSplitMethod={changeSplitMethod}/>
     </aside>
   )
 }

@@ -6,29 +6,11 @@ import './budget.css';
 const Budget = (props) => {
   const [monthlyBudget, updateMonthlyBudget] = useState(null);
 
-  const [addBufferMonth, setBufferState] = useState(false);
-  const [updateManually, setManual] = useState(false);
-
   useEffect(() => {
-    setManual(props.splitManually);
-    setBufferState(props.bufferMonth);
-  }, [props.splitManually, props.bufferMonth])
-  
-  useEffect(() => {
-    if(props.bufferMonth) { 
-      updateMonthlyBudget(Math.floor(props.yearlyBudget/13));
-    } else {
-      updateMonthlyBudget(Math.floor(props.yearlyBudget/12));
-    }
-  }, [props.yearlyBudget, props.bufferMonth])
+    updateMonthlyBudget(Math.floor(props.yearlyBudget/12));
+  }, [props.yearlyBudget])
 
-  return addBufferMonth ? (
-      <section className="month__wrapper">
-        {year.map(month => (
-          <Month key={month.key} id={month.key} monthlyBudget={monthlyBudget} month={month.month}/>    
-        ))}
-      </section> 
-    ) : (
+  return (
       <section className="month__wrapper">
         {year.slice(0,12).map(month => (
           <Month key={month.key} id={month.key} monthlyBudget={monthlyBudget} month={month.month}/>    
