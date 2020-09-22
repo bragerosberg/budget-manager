@@ -39,7 +39,9 @@ const Board = () => {
     <section className="budget__wrapper">
       <aside className="budget__header--wrapper">
         <h1 className="budget__header">Yearly: {yearlyBudget}</h1>
-        <button className="budget__resetbutton" onClick={resetBudget}>X</button>
+        <div onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) resetBudget(); } }>
+          <button className="budget__resetbutton">X</button>
+        </div>
       </aside>
       <Budget yearlyBudget={yearlyBudget} />
     </section>

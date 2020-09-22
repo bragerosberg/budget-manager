@@ -38,9 +38,12 @@ const Month = (props) => {
   const handleAmount = (e) => setAmount(e.target.value);
 
   const deleteExpense = (e) => {
-    let expenseCopy = expenses;
-    expenseCopy = expenseCopy.filter(expense => expense.id !== e.target.id);
-    setExpenses(expenseCopy);
+    const validation = window.confirm('Are you sure you wish to delete this item?');
+    if(validation) {
+      let expenseCopy = expenses;
+      expenseCopy = expenseCopy.filter(expense => expense.id !== e.target.id);
+      setExpenses(expenseCopy);
+    }
   }
   
   const addExpense = () => {
