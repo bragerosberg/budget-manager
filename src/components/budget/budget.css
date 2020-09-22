@@ -1,3 +1,24 @@
 .month__wrapper {
   background: linear-gradient(to top, #f1f3f1, #e9e8e8);;
 }
+
+
+@media (min-width: 700px) {
+  .month__wrapper {
+    background: linear-gradient(to top, #e9e3e3, #d6c1c1);
+  }
+
+  .month--section {
+    background: linear-gradient(to top, #f1f3f1, #e9e8e8);;
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .month--section:hover {
+    background: linear-gradient(to top, #f7faf7, #f6f0f0);;
+  }
+
+  .month__button:hover {
+    background: linear-gradient(to top, #85d15c, #9fe279);
+  }
+}

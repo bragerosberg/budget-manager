@@ -48,3 +48,24 @@
 .budget__header {
   color: linear-gradient(to top, #000000, #434343);
 }
+
+@media (min-width: 700px) {
+  .form__button {
+    margin: 0 auto;
+    width: 75%;
+    border-radius: 5%;
+  }
+
+  .form__button:hover,
+  .form__input:hover {
+    cursor: pointer;
+  }
+
+  .form__button:hover {
+    background: linear-gradient(to top, #69ce3b, #a8e063);
+  }
+
+  .form__input:hover {
+    background-color: rgba(0, 191, 255, 0.116)
+  }
+}
