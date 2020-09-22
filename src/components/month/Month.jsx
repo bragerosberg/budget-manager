@@ -38,7 +38,7 @@ const Month = (props) => {
   const handleAmount = (e) => setAmount(e.target.value);
 
   const deleteExpense = (e) => {
-    const validation = window.confirm('Are you sure you wish to delete this item?');
+    const validation = window.confirm(`Are you sure you wish to delete ${e.target.name}?`);
     if(validation) {
       let expenseCopy = expenses;
       expenseCopy = expenseCopy.filter(expense => expense.id !== e.target.id);
@@ -95,7 +95,9 @@ const Month = (props) => {
           handleName={handleName}
           handleAmount={handleAmount}
         />
-        <button className="month__buttons--deletebtn" onClick={handleClearExpenses}/>
+        <div onClick={() => { if (window.confirm('Are you sure want to delete the whole months expenses?')) handleClearExpenses(); } }>
+          <button className="month__buttons--deletebtn"/>
+        </div>
       </div>
 
     </section>
