@@ -77,7 +77,7 @@ const Month = (props) => {
 
         <div className="month__expenses--table">
           {expenses.map(exp => (
-            <Expense deleteExpense={deleteExpense} exp={exp}/>
+            <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
           ))}
         </div>
 

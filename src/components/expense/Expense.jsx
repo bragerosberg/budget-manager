@@ -10,7 +10,7 @@ const Expense = (props) => {
       <p> - </p>
       <p className="month__expenses--entry--amount">${props.exp.amount}</p>
       <button className="month__expenses--edit" onClick={handleEditClick}/>
-      <button className="month__expenses--delete" id={props.exp.id} onClick={props.deleteExp}>X</button>  
+      <button className="month__expenses--delete" id={props.exp.id} onClick={props.deleteExpense}>X</button>  
     </div>
   ) : (
     <div className="month__expenses--entry">
