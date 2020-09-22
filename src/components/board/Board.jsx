@@ -38,7 +38,7 @@ const Board = () => {
   return budgetSet ? (
     <section className="budget__wrapper">
       <aside className="budget__header--wrapper">
-        <h1 className="budget__header">Total: {yearlyBudget}</h1>
+        <h1 className="budget__header">Yearly: {yearlyBudget}</h1>
         <button className="budget__resetbutton" onClick={resetBudget}>X</button>
       </aside>
       <Budget yearlyBudget={yearlyBudget} />

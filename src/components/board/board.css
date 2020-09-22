@@ -20,6 +20,7 @@
 .budget__header--wrapper {
   display: flex;
   justify-content: center;
+  justify-content: space-between;
   background: linear-gradient(to bottom, #ece9e6, #ffffff);
 }
 
@@ -30,7 +31,6 @@
   border-radius: 50%;
   color: white;
   font-size: 1.5em;
-  
 }
 
 .form__button {
