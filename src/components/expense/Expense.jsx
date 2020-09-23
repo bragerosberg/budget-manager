@@ -14,11 +14,11 @@ const Expense = (props) => {
     </div>
   ) : (
     <div className="month__expenses--entry">
-      <p>{props.exp.name}</p>
-      <p> - </p>
-      <p className="month__expenses--entry--amount">${props.exp.amount}</p>
-      <button className="month__expenses--edit" onClick={handleEditClick}/>
-    </div>
+    <p>{props.exp.name}</p>
+    <p> - </p>
+    <p className="month__expenses--entry--amount">${props.exp.amount}</p>
+    <button className="month__expenses--edit" onClick={handleEditClick}/>
+  </div>
   )
 }
 
