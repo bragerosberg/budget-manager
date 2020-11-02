@@ -1,12 +1,11 @@
 ## Budget Manager  :euro:
-### State: Under Construction :construction_worker:
 Application is currently under development and is yet to recieve multiple features before it's complete.
 https://simplebudgetmanager.herokuapp.com/
 ___
-### About :new:
+### About
 The possibilities of managing economy and especially budgets is a very common concern among many. The availabilities of management-tools which is ranging from simple to advanced features. However, in this project I am taking on the task of simplifying this process, users who are fresh into startups have a lot to digest, with my *Budget Manager* I'll release a tool that convenient and basic it can reduce your work load, rather than complicating it. Whenever you feel ready to move onto other management-tools or feel like there is missing features, please feel free to contact me, and I'll do my very best to help!
 ___
-### Mobility :briefcase: :computer: :iphone:
+### Mobility :briefcase
 If you are working from an office, your living room, on a desktop or a tablet - it should feel the same and be a problem-free process. Therefore I am focusing on the responsiveness and mobility across platforms and devices. 
 
 ### Availability 
