@@ -1,15 +1,11 @@
-## Budget Manager  :euro:
-Application is currently under development and is yet to recieve multiple features before it's complete.
-https://simplebudgetmanager.herokuapp.com/
+## Budget Manager 
+Hosted: https://simplebudgetmanager.herokuapp.com/
 ___
 ### About
-The possibilities of managing economy and especially budgets is a very common concern among many. The availabilities of management-tools which is ranging from simple to advanced features. However, in this project I am taking on the task of simplifying this process, users who are fresh into startups have a lot to digest, with my *Budget Manager* I'll release a tool that convenient and basic it can reduce your work load, rather than complicating it. Whenever you feel ready to move onto other management-tools or feel like there is missing features, please feel free to contact me, and I'll do my very best to help!
+The possibilities of managing economy and especially budgets is a very common task among many. The opportunities and choices of management-tools which content is consisting of a range from simple to more advanced features. However, in this project I was taking on the task of simplifying this process, users who are fresh into startups have a lot of new responsobilities to digest, and with my *Budget Manager* I'm hoping I can contribute by creating this tool being so convenient and basic that it reduces complications and eases your work. With intent this is designed to be easy, with few possibilities for confusing - and therefore logically lacking a wide variety of features. My goal is to be a helpful starting tool, or even being a permanent choice if I serve the needs you have.  
 ___
-### Mobility :briefcase
-If you are working from an office, your living room, on a desktop or a tablet - it should feel the same and be a problem-free process. Therefore I am focusing on the responsiveness and mobility across platforms and devices. 
-
-### Availability 
-To apply with the meaning behind my *Budget Manager* the availability will be as broad as possible. Hosting it online (responsive for all platforms), writing it in a mobile application and launch on the official Google Play Store (Working with publishing to AppStore).  
+### Responsiveness
+Going into the design of this I was focusing on responsiveness across platforms, the features should not be restricted to only suit one platform group. If you are working from an office, your living room, on a desktop or a tablet - it should feel the same and be a problem-free process. I have even created an android-version which you can see the repository to [here][androidrepo].
 
 ### Contact:
 [<img align="left" style="margin-left: 10px;" alt="codeSTACKr | LinkedIn" width="40px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
@@ -22,3 +18,4 @@ Copyright (c) 2020 Brage Røsberg
 
 [linkedin]: https://www.linkedin.com/in/brage-rosberg/
 [website]: https://www.bragerosberg.com
+[androidrepo]: https://github.com/bragerosberg/budget-manager-reactnative
