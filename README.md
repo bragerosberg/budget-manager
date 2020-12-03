@@ -1,5 +1,7 @@
 ## Budget Manager 
 Hosted: https://simplebudgetmanager.herokuapp.com/
+
+The possibilities of managing economy and especially budgets is a very common task among many. The opportunities and choices of management-tools which content is consisting of a range from simple to more advanced features. However, in this project I was taking on the task of simplifying this process, users who are fresh into startups have a lot of new responsobilities to digest, and with my *Budget Manager* I'm hoping I can contribute by creating this tool being so convenient and basic that it reduces complications and eases your work. With intent this is designed to be easy, with few possibilities for confusing - and therefore logically lacking a wide variety of features. My goal is to be a helpful starting tool, or even being a permanent choice if I serve the needs you have.
 ___
 # Article
 - [Contents of App](#contents)
@@ -16,9 +18,6 @@ ___
 - Ability to edit/delete expenses
 - See how much is remaining of a monthly budget
 - All data is stored locally and secure (localStorage API)
-
-## About 
-The possibilities of managing economy and especially budgets is a very common task among many. The opportunities and choices of management-tools which content is consisting of a range from simple to more advanced features. However, in this project I was taking on the task of simplifying this process, users who are fresh into startups have a lot of new responsobilities to digest, and with my *Budget Manager* I'm hoping I can contribute by creating this tool being so convenient and basic that it reduces complications and eases your work. With intent this is designed to be easy, with few possibilities for confusing - and therefore logically lacking a wide variety of features. My goal is to be a helpful starting tool, or even being a permanent choice if I serve the needs you have.  
 
 # Tech Usage and Reasoning
 This section will be filled out shortly.
