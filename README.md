@@ -1,8 +1,15 @@
 ## Budget Manager 
-Hosted: https://simplebudgetmanager.herokuapp.com/
+https://simplebudgetmanager.herokuapp.com/
 
-The possibilities of managing economy and especially budgets is a very common task among many. The opportunities and choices of management-tools which content is consisting of a range from simple to more advanced features. However, in this project I was taking on the task of simplifying this process, users who are fresh into startups have a lot of new responsobilities to digest, and with my *Budget Manager* I'm hoping I can contribute by creating this tool being so convenient and basic that it reduces complications and eases your work. With intent this is designed to be easy, with few possibilities for confusing - and therefore logically lacking a wide variety of features. My goal is to be a helpful starting tool, or even being a permanent choice if I serve the needs you have.
-___
+Fill in a yearly budget, have it split equally throughout the year, fill out the individual month expenses, see how much is remaining of the current month, edit expenses - all being saved locally on your browser at the hosted website as linked above or test locally by doing the following.
+
+## Test Locally
+- Clone this repository at your desired location
+- cd to ```budget-manager``` folder
+- Install dependencies and start, ``` npm i "&&" npm start ```
+- You're all set, go to: ```http://localhost:3000/```
+
+
 # Article
 - [Contents of App](#contents)
 - [Tech Usage and Reasoning](#tech-usage-and-reasoning)
@@ -32,7 +39,7 @@ This section will be filled out shortly.
 Going into the design of this I was focusing on responsiveness across platforms, the features should not be restricted to only suit one platform group. If you are working from an office, your living room, on a desktop or a tablet - it should feel the same and be a problem-free process. I have even created an android-version which you can see the repository to [here][androidrepo].
 
 # Full Description
-This section will be filled out shortly.
+The possibilities of managing economy and especially budgets is a very common task among many. The opportunities and choices of management-tools which content is consisting of a range from simple to more advanced features. However, in this project I was taking on the task of simplifying this process, users who are fresh into startups have a lot of new responsobilities to digest, and with my *Budget Manager* I'm hoping I can contribute by creating this tool being so convenient and basic that it reduces complications and eases your work. With intent this is designed to be easy, with few possibilities for confusing - and therefore logically lacking a wide variety of features. My goal is to be a helpful starting tool, or even being a permanent choice if I serve the needs you have.
 
 # Get in Touch With me:
 [<img align="left" style="margin-left: 10px;" alt="codeSTACKr | LinkedIn" width="40px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
