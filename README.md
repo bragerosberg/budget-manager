@@ -96,7 +96,7 @@ alt="gmail" src="https://i.imgur.com/mo4E0Fb.png"/></a>
 
 ### Creator
 MIT License
-Copyright (c) 2020 Brage Røsberg
+Copyright (c) 2021 Brage Røsberg
 
 [linkedin]: https://www.linkedin.com/in/brage-rosberg/
 [website]: https://www.bragerosberg.com
