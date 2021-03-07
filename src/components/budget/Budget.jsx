@@ -4,7 +4,7 @@ import year from './year';
 import './budget.css';
 
 const Budget = (props) => {
-  const [monthlyBudget, updateMonthlyBudget] = useState(null);
+  const [monthlyBudget, updateMonthlyBudget] = useState();
 
   useEffect(() => {
     updateMonthlyBudget(Math.floor(props.yearlyBudget/12));

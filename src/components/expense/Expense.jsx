@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
+import SingularExpense from './SingularExpense';
 
 const Expense = (props) => {
   const [toggleRemove, toggleRemoveStatus] = useState(false);
   const handleEditClick = () => toggleRemoveStatus(!toggleRemove);
+  const { name, id, amount } = props.exp;
 
   return toggleRemove ? (
-    <div className="month__expenses--entry">
-      <p>{props.exp.name}</p>
-      <p> - </p>
-      <p className="month__expenses--entry--amount">${props.exp.amount}</p>
-      <button className="month__expenses--edit" onClick={handleEditClick}/>
-      <button className="month__expenses--delete" name={props.exp.name} id={props.exp.id} onClick={props.deleteExpense}>X</button>  
-    </div>
+    <>
+      <SingularExpense handleEditClick={handleEditClick} name={name} amount={amount}/>
+      <button 
+        className="month__expenses--delete"
+        name={name}
+        id={id}
+        onClick={props.deleteExpense}
+      >
+        X
+      </button>  
+    </>
   ) : (
-    <div className="month__expenses--entry">
-    <p>{props.exp.name}</p>
-    <p> - </p>
-    <p className="month__expenses--entry--amount">${props.exp.amount}</p>
-    <button className="month__expenses--edit" onClick={handleEditClick}/>
-  </div>
+    <SingularExpense handleEditClick={handleEditClick} name={name} amount={amount}/>
   )
 }
 
