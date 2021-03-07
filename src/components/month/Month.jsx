@@ -5,9 +5,10 @@ import Form from '../form/Form';
 import './month.css';
 
 const Month = (props) => {
-  const attemptSavedExpenses = localStorage.getItem(props.month) ? JSON.parse(localStorage.getItem(props.month)) : [];
+  const { monthlyBudget, month } = props;
+  const attemptSavedExpenses = localStorage.getItem(month) ? JSON.parse(localStorage.getItem(month)) : [];
 
-  const [remainingMonth, updateMonthlyRemaining] = useState(props.monthlyBudget);
+  const [remainingMonth, updateMonthlyRemaining] = useState(monthlyBudget);
   const [expenses, setExpenses] = useState(attemptSavedExpenses);
   const [usedMonth, setMonthUsed] = useState(0);
 
@@ -15,23 +16,20 @@ const Month = (props) => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
 
+  
   useEffect(() => {
-    updateMonthlyRemaining(props.monthlyBudget - usedMonth);
-  }, [props.monthlyBudget, usedMonth]);
+    updateMonthlyRemaining(monthlyBudget - usedMonth);
+  }, [monthlyBudget, usedMonth]);
 
   useEffect(() => {
     const total = expenses.reduce((acc, cur) => acc += parseInt(cur.amount), 0);
     setMonthUsed(total);
-    updateMonthlyRemaining(props.monthlyBudget - total);
-  }, [props.monthlyBudget, expenses]);
+    updateMonthlyRemaining(monthlyBudget - total);
+  }, [monthlyBudget, expenses]);
 
   useEffect(() => {
-    localStorage.setItem(props.month, JSON.stringify(expenses))
-  }, [props.month, expenses])
-
-  const handleClearExpenses = () => setExpenses([]);
-
-  const editToggle = () => editMonthState(!editMonth);
+    localStorage.setItem(month, JSON.stringify(expenses))
+  }, [month, expenses])
 
   const handleName = (e) => setName(e.target.value);
   
@@ -40,9 +38,8 @@ const Month = (props) => {
   const deleteExpense = (e) => {
     const validation = window.confirm(`Are you sure you wish to delete ${e.target.name}?`);
     if(validation) {
-      let expenseCopy = expenses;
-      expenseCopy = expenseCopy.filter(expense => expense.id !== e.target.id);
-      setExpenses(expenseCopy);
+      const updatedExpenses = expenses.filter(expense => expense.id !== e.target.id);
+      setExpenses(updatedExpenses);
     }
   }
   
@@ -65,13 +62,13 @@ const Month = (props) => {
 
   return editMonth ? (
     <section className="month--section">
-      <h2 className="month__name">{props.month}</h2>
+      <h2 className="month__name">{month}</h2>
       
       <aside className="month__expenses">
 
         <section className="month__expenses--numbers">
             <p className="month__expenses--numbers--header">Budget:</p> 
-            <p>{props.monthlyBudget}</p>
+            <p>{monthlyBudget}</p>
             <p className="month__expenses--numbers--header">Remaining:</p>
             <p>{remainingMonth}</p>
             <p className="month__expenses--numbers--header">Used:</p> 
@@ -87,7 +84,7 @@ const Month = (props) => {
       </aside>
 
       <div className="month__buttons">
-        <button className="month__buttons--goBack" onClick={editToggle}/>
+        <button className="month__buttons--goBack" onClick={() => editMonthState(!editMonth)}/>
         <Form 
           handleSubmitForm={handleSubmitForm}
           amount={amount}
@@ -95,7 +92,7 @@ const Month = (props) => {
           handleName={handleName}
           handleAmount={handleAmount}
         />
-        <div onClick={() => { if (window.confirm('Are you sure want to delete the whole months expenses?')) handleClearExpenses(); } }>
+        <div onClick={() => { if (window.confirm('Are you sure want to delete the whole months expenses?')) setExpenses([]) } }>
           <button className="month__buttons--deletebtn"/>
         </div>
       </div>
@@ -103,9 +100,9 @@ const Month = (props) => {
     </section>
   ) : (
     <section className="month--section">
-      <h2 className="month__name">{props.month}</h2>
-      <p>{usedMonth}/{props.monthlyBudget}</p>
-      <button className="month__button" onClick={editToggle}>Add Expenses</button>
+      <h2 className="month__name">{month}</h2>
+      <p>{usedMonth}/{monthlyBudget}</p>
+      <button className="month__button" onClick={() => editMonthState(!editMonth)}>Add Expenses</button>
     </section>
   )
 }

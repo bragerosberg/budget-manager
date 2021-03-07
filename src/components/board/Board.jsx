@@ -8,14 +8,12 @@ const Board = () => {
 
   const [budgetSet, setBudgetStatus] = useState(false);
 
-
   useEffect(() => {
     if(attemptSavedBudget !== "") setBudgetStatus(true);
   }, [attemptSavedBudget ])
 
   const handleChange = (e) => {
-    const { target } = e;
-    const { value } = target;
+    const { value } = e.target;
     updateYearlyBudget(value);
   };
 
