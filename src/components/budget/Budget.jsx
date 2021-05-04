@@ -3,17 +3,13 @@ import Month from '../month/Month';
 import year from './year';
 import './budget.css';
 
-const Budget = (props) => {
-  const [monthlyBudget, updateMonthlyBudget] = useState();
-
-  useEffect(() => {
-    updateMonthlyBudget(Math.floor(props.yearlyBudget/12));
-  }, [props.yearlyBudget])
+const Budget = ({ yearlyBudget }) => {
+  const monthlyBudget = Math.floor(yearlyBudget / 12);
 
   return (
       <section className="month__wrapper">
-        {year.slice(0,12).map(month => (
-          <Month key={month.key} id={month.key} monthlyBudget={monthlyBudget} month={month.month}/>    
+        {year.slice(0, 12).map(({ month, key }) => (
+          <Month key={key} id={key} monthlyBudget={monthlyBudget} month={month}/>    
         ))}
       </section> 
     )

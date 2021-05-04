@@ -4,51 +4,53 @@ import { uuid } from 'uuidv4';
 import Form from '../form/Form';
 import './month.css';
 
-const Month = (props) => {
-  const { monthlyBudget, month } = props;
-  const attemptSavedExpenses = localStorage.getItem(month) ? JSON.parse(localStorage.getItem(month)) : [];
-
+const Month = ({ monthlyBudget, month }) => {
   const [remainingMonth, updateMonthlyRemaining] = useState(monthlyBudget);
-  const [expenses, setExpenses] = useState(attemptSavedExpenses);
+  const [expenses, setExpenses] = useState([]);
   const [usedMonth, setMonthUsed] = useState(0);
 
   const [editMonth, editMonthState] = useState(false);
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
 
+  console.log(month)
+
+
+  useEffect(() => {
+    const attemptSavedExpenses = localStorage.getItem(month) ? JSON.parse(localStorage.getItem(month)) : [];
+    setExpenses(attemptSavedExpenses);
+  },[month])
   
   useEffect(() => {
     updateMonthlyRemaining(monthlyBudget - usedMonth);
   }, [monthlyBudget, usedMonth]);
 
   useEffect(() => {
-    const total = expenses.reduce((acc, cur) => acc += parseInt(cur.amount), 0);
-    setMonthUsed(total);
-    updateMonthlyRemaining(monthlyBudget - total);
+    const totalExpenses = expenses.reduce((acc, cval) => acc += parseInt(cval.amount), 0);
+    setMonthUsed(totalExpenses);
+    updateMonthlyRemaining(monthlyBudget - totalExpenses);
   }, [monthlyBudget, expenses]);
 
-  useEffect(() => {
-    localStorage.setItem(month, JSON.stringify(expenses))
-  }, [month, expenses])
-
-  const handleName = (e) => setName(e.target.value);
+  const handleName = ({ target }) => setName(target.value);
   
-  const handleAmount = (e) => setAmount(e.target.value);
+  const handleAmount = ({ target }) => setAmount(target.value);
 
-  const deleteExpense = (e) => {
-    const validation = window.confirm(`Are you sure you wish to delete ${e.target.name}?`);
-    if(validation) {
-      const updatedExpenses = expenses.filter(expense => expense.id !== e.target.id);
-      setExpenses(updatedExpenses);
+  const deleteExpense = ({ target }) => {
+    const actionValidate = window.confirm(`Are you sure you wish to delete ${target.name}?`);
+    if(actionValidate) {
+      setExpenses(expenses.filter(({ id }) => id !== target.id));
     }
   }
-  
-  const addExpense = () => {
-    const id = uuid();
-    const expense = { name, amount, id }
-    setExpenses([...expenses, expense]);
+
+  const resetExpenseFields = () => {
     setName('');
     setAmount('');
+  }
+   
+  const addExpense = () => {
+    setExpenses([...expenses, { id: uuid(), name, amount }]);
+    localStorage.setItem(month, JSON.stringify(expenses))
+    resetExpenseFields();
   }
 
   const handleSubmitForm = (e) => {
@@ -56,7 +58,7 @@ const Month = (props) => {
     if (name !== '' && amount > 0) {
       addExpense();
     } else {
-      console.log('Invalid expense name or the amount')
+      console.log('Invalid name or amount entered for the expense. Please retry.')
     }
   }
 
@@ -76,8 +78,8 @@ const Month = (props) => {
         </section>
 
         <div className="month__expenses--table">
-          {expenses.map(exp => (
-            <Expense key={exp.id} deleteExpense={deleteExpense} exp={exp}/>
+          {expenses.map(({ id, name, amount }) => (
+            <Expense key={id} id={id} name={name} amount={amount} deleteExpense={deleteExpense} />
           ))}
         </div>
 
@@ -92,7 +94,11 @@ const Month = (props) => {
           handleName={handleName}
           handleAmount={handleAmount}
         />
-        <div onClick={() => { if (window.confirm('Are you sure want to delete the whole months expenses?')) setExpenses([]) } }>
+        <div onClick={() => { 
+          if (window.confirm('Are you sure want to delete the whole months expenses?')) 
+            setExpenses([]);
+          } 
+        }>
           <button className="month__buttons--deletebtn"/>
         </div>
       </div>
