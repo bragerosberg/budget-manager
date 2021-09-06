@@ -33,13 +33,13 @@ const Board = () => {
 
   return  (
     <>
-    {budgetSet && (
+    {budgetSet ? (
       <section className="budget__wrapper">
         <aside className="budget__header--wrapper">
           <h1 className="budget__header">Yearly: {yearlyBudget}</h1>
           <div 
             onClick={() => { 
-              if (window.confirm('Are you sure you wish to restart the budget?')) resetBudget(); 
+              if (window.confirm('Are you sure you wish to reset the budget?')) resetBudget(); 
               } 
             }>
             <button className="budget__resetbutton">X</button>
@@ -47,8 +47,7 @@ const Board = () => {
         </aside>
         <Budget yearlyBudget={yearlyBudget} />
       </section>
-    )}
-    {!budgetSet && (
+    ) : (
       <aside>
         <form className="form__wrapper" onSubmit={handleSubmit}>
           <h1 className="form__header">Budget Manager</h1>
