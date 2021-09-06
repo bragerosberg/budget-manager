@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Month from '../month/Month';
 import year from './year';
 import './budget.css';
