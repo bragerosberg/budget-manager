@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Form = ({ name, handleName, amount, handleSubmitForm, handleAmount }) => (
   <aside>
@@ -8,7 +8,8 @@ const Form = ({ name, handleName, amount, handleSubmitForm, handleAmount }) => (
         name="name"
         placeholder="Enter the expense..."
         value={name}
-        onChange={handleName} />
+        onChange={handleName}
+      />
     </form>
 
     <form onSubmit={handleSubmitForm}>
@@ -17,7 +18,8 @@ const Form = ({ name, handleName, amount, handleSubmitForm, handleAmount }) => (
         name="amount"
         placeholder="Enter the price..."
         value={amount}
-        onChange={handleAmount} />
+        onChange={handleAmount}
+      />
     </form>
   </aside>
 );

@@ -7,19 +7,23 @@ const Expense = ({ id, name, amount, deleteExpense }) => {
 
   return (
     <>
-      <SingularExpense handleEditClick={handleEditClick} name={name} amount={amount}/>
+      <SingularExpense
+        handleEditClick={handleEditClick}
+        name={name}
+        amount={amount}
+      />
       {toggleRemove && (
-        <button 
+        <button
           className="month__expenses--delete"
           name={name}
           id={id}
           onClick={deleteExpense}
         >
           X
-        </button> 
+        </button>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Expense; 
+export default Expense;

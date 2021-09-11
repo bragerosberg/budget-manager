@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Expense from "../expense/Expense";
-import { uuid } from "uuidv4";
-import Form from "../form/Form";
-import "./month.css";
+import React, { useState, useEffect } from 'react';
+import Expense from '../expense/Expense';
+import { uuid } from 'uuidv4';
+import Form from '../form/Form';
+import './month.css';
 
 const Month = ({ monthlyBudget, month }) => {
   const [remainingMonth, updateMonthlyRemaining] = useState(monthlyBudget);
@@ -10,8 +10,8 @@ const Month = ({ monthlyBudget, month }) => {
   const [usedMonth, setMonthUsed] = useState(0);
 
   const [editMonth, editMonthState] = useState(false);
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
+  const [name, setName] = useState('');
+  const [amount, setAmount] = useState('');
 
   useEffect(() => {
     const attemptSavedExpenses = localStorage.getItem(month)
@@ -26,7 +26,8 @@ const Month = ({ monthlyBudget, month }) => {
 
   useEffect(() => {
     const totalExpenses = expenses.reduce(
-      (expenseAcc, currentExpense) => (expenseAcc += parseInt(currentExpense.amount)),
+      (expenseAcc, currentExpense) =>
+        (expenseAcc += parseInt(currentExpense.amount)),
       0
     );
     setMonthUsed(totalExpenses);
@@ -47,8 +48,8 @@ const Month = ({ monthlyBudget, month }) => {
   };
 
   const resetExpenseFields = () => {
-    setName("");
-    setAmount("");
+    setName('');
+    setAmount('');
   };
 
   const addExpense = () => {
@@ -59,11 +60,11 @@ const Month = ({ monthlyBudget, month }) => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if (name !== "" && amount > 0) {
+    if (name !== '' && amount > 0) {
       addExpense();
     } else {
       console.log(
-        "Invalid name or amount entered for the expense. Please retry."
+        'Invalid name or amount entered for the expense. Please retry.'
       );
     }
   };
@@ -111,7 +112,7 @@ const Month = ({ monthlyBudget, month }) => {
           onClick={() => {
             if (
               window.confirm(
-                "Are you sure want to delete the whole months expenses?"
+                'Are you sure want to delete the whole months expenses?'
               )
             )
               setExpenses([]);
