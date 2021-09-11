@@ -6,7 +6,7 @@ import Board from './components/board/Board';
 ReactDOM.render(
   <React.StrictMode>
     <main className="app__header">
-        <Board />
+      <Board />
     </main>
   </React.StrictMode>,
   document.getElementById('root')

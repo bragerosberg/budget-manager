@@ -5,7 +5,7 @@ const SingularExpense = ({ name, amount, handleEditClick }) => (
     <p>{name}</p>
     <p> - </p>
     <p className="month__expenses--entry--amount">${amount}</p>
-    <button className="month__expenses--edit" onClick={handleEditClick}/>
+    <button className="month__expenses--edit" onClick={handleEditClick} />
   </div>
 );
 
