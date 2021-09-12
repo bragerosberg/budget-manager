@@ -4,7 +4,7 @@ import './board.css';
 
 const Board = () => {
   const [yearlyBudget, updateYearlyBudget] = useState<number>(0);
-  const [budgetSet, setBudgetStatus] = useState(false);
+  const [budgetSet, setBudgetStatus] = useState<boolean>(false);
 
   useEffect(() => {
     const attemptSavedBudget = localStorage.getItem('budget')

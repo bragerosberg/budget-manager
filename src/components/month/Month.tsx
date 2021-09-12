@@ -12,7 +12,7 @@ type MonthProps = {
 type Expense = {
   id: string;
   name: string;
-  amount: number | string;
+  amount: number;
 };
 
 const Month = ({ monthlyBudget, month }: MonthProps) => {
@@ -20,9 +20,9 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
   const [expenses, setExpenses] = useState([] as Expense[]);
   const [usedMonth, setMonthUsed] = useState(0);
 
-  const [editMonth, editMonthState] = useState(false);
-  const [name, setName] = useState('');
-  const [amount, setAmount] = useState('');
+  const [editMonth, editMonthState] = useState<boolean>(false);
+  const [name, setName] = useState<string>('');
+  const [amount, setAmount] = useState<number>(0);
 
   console.log(month);
 
@@ -39,7 +39,7 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
 
   useEffect(() => {
     const totalExpenses = expenses.reduce(
-      (acc, cval: any) => (acc += parseInt(cval.amount)),
+      (acc, cval: any) => (acc += cval.amount),
       0
     );
     setMonthUsed(totalExpenses);
@@ -49,7 +49,7 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
   const handleName = ({ target: { value } }: { target: { value: string } }) =>
     setName(value);
 
-  const handleAmount = ({ target: { value } }: { target: { value: string } }) =>
+  const handleAmount = ({ target: { value } }: { target: { value: number } }) =>
     setAmount(value);
 
   const deleteExpense = ({
@@ -67,7 +67,7 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
 
   const resetExpenseFields = () => {
     setName('');
-    setAmount('');
+    setAmount(0);
   };
 
   const addExpense = () => {
@@ -77,7 +77,7 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
   };
 
   const handleSubmitForm = () => {
-    if (name !== '' && parseInt(amount) > 0) {
+    if (name !== '' && amount > 0) {
       addExpense();
     } else {
       console.log(
