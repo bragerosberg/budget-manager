@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Budget from '../budget/Budget';
 import './board.css';
 
 const Board = () => {
-  const [yearlyBudget, updateYearlyBudget] = useState<number>(0);
-  const [budgetSet, setBudgetStatus] = useState<boolean>(false);
-
-  useEffect(() => {
-    const attemptSavedBudget = localStorage.getItem('budget')
+  const [yearlyBudget, updateYearlyBudget] = useState<number>(
+    localStorage.getItem('budget')
       ? JSON.parse(localStorage.getItem('budget')!)
-      : 0;
-    if (attemptSavedBudget > 0) setBudgetStatus(true);
-    updateYearlyBudget(attemptSavedBudget);
-  }, []);
+      : 0
+  );
+  const [budgetSet, setBudgetStatus] = useState<boolean>(yearlyBudget > 0);
 
   const handleChange = ({ target }: any) => {
     const { value } = target;
@@ -27,7 +23,7 @@ const Board = () => {
 
   const handleSubmit = (e?: any) => {
     if (e) e.preventDefault();
-    if (yearlyBudget > 1) {
+    if (yearlyBudget) {
       localStorage.setItem('budget', JSON.stringify(yearlyBudget));
       setBudgetStatus((budgetSet) => !budgetSet);
     }

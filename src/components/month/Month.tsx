@@ -24,8 +24,6 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
   const [name, setName] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
 
-  console.log(month);
-
   useEffect(() => {
     const attemptSavedExpenses = localStorage.getItem(month)
       ? JSON.parse(localStorage.getItem(month)!)
@@ -39,9 +37,10 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
 
   useEffect(() => {
     const totalExpenses = expenses.reduce(
-      (acc, cval: any) => (acc += cval.amount),
+      (acc, cval) => (acc += cval.amount),
       0
     );
+    console.log(totalExpenses);
     setMonthUsed(totalExpenses);
     updateMonthlyRemaining(monthlyBudget - totalExpenses);
   }, [monthlyBudget, expenses]);
@@ -78,6 +77,7 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
 
   const handleSubmitForm = () => {
     if (name !== '' && amount > 0) {
+      console.log('name', name, amount, 'amount');
       addExpense();
     } else {
       console.log(

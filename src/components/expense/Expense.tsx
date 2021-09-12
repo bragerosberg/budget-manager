@@ -4,7 +4,7 @@ import SingularExpense from './SingularExpense';
 type ExpenseProps = {
   id: string;
   name: string;
-  amount: number | string;
+  amount: number;
   deleteExpense: (target: any) => void;
 };
 
