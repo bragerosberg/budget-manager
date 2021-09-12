@@ -17,7 +17,7 @@ type Expense = {
 
 const Month = ({ monthlyBudget, month }: MonthProps) => {
   const [remainingMonth, updateMonthlyRemaining] = useState(monthlyBudget);
-  const [expenses, setExpenses] = useState([] as Expense[]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
   const [usedMonth, setMonthUsed] = useState(0);
 
   const [editMonth, editMonthState] = useState<boolean>(false);
@@ -26,7 +26,7 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
 
   useEffect(() => {
     const attemptSavedExpenses = localStorage.getItem(month)
-      ? JSON.parse(localStorage.getItem(month)!)
+      ? JSON.parse(localStorage.getItem(month) || '')
       : [];
     setExpenses(attemptSavedExpenses);
   }, [month]);
@@ -40,7 +40,6 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
       (acc, cval) => (acc += cval.amount),
       0
     );
-    console.log(totalExpenses);
     setMonthUsed(totalExpenses);
     updateMonthlyRemaining(monthlyBudget - totalExpenses);
   }, [monthlyBudget, expenses]);
@@ -75,9 +74,9 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
     resetExpenseFields();
   };
 
-  const handleSubmitForm = () => {
+  const handleSubmitForm = (e?: any) => {
+    e.preventDefault();
     if (name !== '' && amount > 0) {
-      console.log('name', name, amount, 'amount');
       addExpense();
     } else {
       console.log(
