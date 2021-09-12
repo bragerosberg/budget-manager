@@ -3,14 +3,14 @@ import Budget from '../budget/Budget';
 import './board.css';
 
 const Board = () => {
-  const [yearlyBudget, updateYearlyBudget] = useState<any>();
+  const [yearlyBudget, updateYearlyBudget] = useState<number>(0);
   const [budgetSet, setBudgetStatus] = useState(false);
 
   useEffect(() => {
     const attemptSavedBudget = localStorage.getItem('budget')
       ? JSON.parse(localStorage.getItem('budget')!)
-      : '';
-    if (attemptSavedBudget !== '') setBudgetStatus(true);
+      : 0;
+    if (attemptSavedBudget > 0) setBudgetStatus(true);
     updateYearlyBudget(attemptSavedBudget);
   }, []);
 
@@ -22,12 +22,12 @@ const Board = () => {
   const resetBudget = () => {
     handleSubmit();
     localStorage.clear();
-    updateYearlyBudget('');
+    updateYearlyBudget(0);
   };
 
   const handleSubmit = (e?: any) => {
     if (e) e.preventDefault();
-    if (yearlyBudget !== '') {
+    if (yearlyBudget > 1) {
       localStorage.setItem('budget', JSON.stringify(yearlyBudget));
       setBudgetStatus((budgetSet) => !budgetSet);
     }
