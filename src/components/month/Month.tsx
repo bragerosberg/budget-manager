@@ -36,9 +36,10 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
   }, [monthlyBudget, usedMonth]);
 
   useEffect(() => {
-    const totalExpenses = expenses.reduce((acc, cval) => {
-      return (acc += +cval.amount);
-    }, 0);
+    const totalExpenses = expenses.reduce(
+      (acc, cval) => (acc += +cval.amount),
+      0
+    );
     setMonthUsed(totalExpenses);
     updateMonthlyRemaining(monthlyBudget - totalExpenses);
   }, [monthlyBudget, expenses]);
