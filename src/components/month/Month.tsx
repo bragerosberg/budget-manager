@@ -50,16 +50,14 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
   const handleAmount = ({ target: { value } }: { target: { value: number } }) =>
     setAmount(value);
 
-  const deleteExpense = ({
-    target: { name, id: expenseId },
-  }: {
-    target: { name: string; id: string };
-  }) => {
+  const deleteExpense = ({ id: clickedId }: { id: string }) => {
     const actionValidate = window.confirm(
       `Are you sure you wish to delete ${name}?`
     );
     if (actionValidate) {
-      setExpenses(expenses.filter(({ id }) => id !== expenseId));
+      setExpenses(
+        expenses.filter(({ id: expenseId }) => expenseId !== clickedId)
+      );
     }
   };
 
