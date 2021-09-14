@@ -44,11 +44,9 @@ const Month = ({ monthlyBudget, month }: MonthProps) => {
     updateMonthlyRemaining(monthlyBudget - totalExpenses);
   }, [monthlyBudget, expenses]);
 
-  const handleName = ({ target: { value } }: { target: { value: string } }) =>
-    setName(value);
+  const handleName = ({ target: { value } }: any) => setName(value);
 
-  const handleAmount = ({ target: { value } }: { target: { value: number } }) =>
-    setAmount(value);
+  const handleAmount = ({ target: { value } }: any) => setAmount(value);
 
   const deleteExpense = ({ id: clickedId }: { id: string }) => {
     const actionValidate = window.confirm(
