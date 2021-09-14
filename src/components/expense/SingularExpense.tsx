@@ -1,6 +1,16 @@
 import React from 'react';
 
-const SingularExpense = ({ name, amount, handleEditClick }) => (
+type SingularExpenseProps = {
+  name: string;
+  amount: number;
+  handleEditClick: () => void;
+};
+
+const SingularExpense = ({
+  name,
+  amount,
+  handleEditClick,
+}: SingularExpenseProps) => (
   <div className="month__expenses--entry">
     <p>{name}</p>
     <p> - </p>

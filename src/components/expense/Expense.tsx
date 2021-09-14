@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import SingularExpense from './SingularExpense';
 
-const Expense = ({ id, name, amount, deleteExpense }) => {
+type ExpenseProps = {
+  id: string;
+  name: string;
+  amount: number;
+  deleteExpense: (target: any) => void;
+};
+
+const Expense = ({ id, name, amount, deleteExpense }: ExpenseProps) => {
   const [toggleRemove, toggleRemoveStatus] = useState(false);
   const handleEditClick = () => toggleRemoveStatus(!toggleRemove);
 
@@ -17,7 +24,7 @@ const Expense = ({ id, name, amount, deleteExpense }) => {
           className="month__expenses--delete"
           name={name}
           id={id}
-          onClick={deleteExpense}
+          onClick={({ target }) => deleteExpense(target)}
         >
           X
         </button>

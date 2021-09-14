@@ -4,18 +4,29 @@ import { uuid } from 'uuidv4';
 import Form from '../form/Form';
 import './month.css';
 
-const Month = ({ monthlyBudget, month }) => {
+type MonthProps = {
+  monthlyBudget: number;
+  month: string;
+};
+
+type Expense = {
+  id: string;
+  name: string;
+  amount: number;
+};
+
+const Month = ({ monthlyBudget, month }: MonthProps) => {
   const [remainingMonth, updateMonthlyRemaining] = useState(monthlyBudget);
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
   const [usedMonth, setMonthUsed] = useState(0);
 
-  const [editMonth, editMonthState] = useState(false);
-  const [name, setName] = useState('');
-  const [amount, setAmount] = useState('');
+  const [editMonth, editMonthState] = useState<boolean>(false);
+  const [name, setName] = useState<string>('');
+  const [amount, setAmount] = useState<number>(0);
 
   useEffect(() => {
     const attemptSavedExpenses = localStorage.getItem(month)
-      ? JSON.parse(localStorage.getItem(month))
+      ? JSON.parse(localStorage.getItem(month) || '')
       : [];
     setExpenses(attemptSavedExpenses);
   }, [month]);
@@ -26,30 +37,31 @@ const Month = ({ monthlyBudget, month }) => {
 
   useEffect(() => {
     const totalExpenses = expenses.reduce(
-      (expenseAcc, currentExpense) =>
-        (expenseAcc += parseInt(currentExpense.amount)),
+      (acc, cval) => (acc += +cval.amount),
       0
     );
     setMonthUsed(totalExpenses);
     updateMonthlyRemaining(monthlyBudget - totalExpenses);
   }, [monthlyBudget, expenses]);
 
-  const handleName = ({ target: { value } }) => setName(value);
+  const handleName = ({ target: { value } }: any) => setName(value);
 
-  const handleAmount = ({ target: { value } }) => setAmount(value);
+  const handleAmount = ({ target: { value } }: any) => setAmount(value);
 
-  const deleteExpense = ({ target: { name, id: _id } }) => {
+  const deleteExpense = ({ id: clickedId }: { id: string }) => {
     const actionValidate = window.confirm(
       `Are you sure you wish to delete ${name}?`
     );
     if (actionValidate) {
-      setExpenses(expenses.filter(({ id }) => id !== _id));
+      setExpenses(
+        expenses.filter(({ id: expenseId }) => expenseId !== clickedId)
+      );
     }
   };
 
   const resetExpenseFields = () => {
     setName('');
-    setAmount('');
+    setAmount(0);
   };
 
   const addExpense = () => {
@@ -58,7 +70,7 @@ const Month = ({ monthlyBudget, month }) => {
     resetExpenseFields();
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = (e?: any) => {
     e.preventDefault();
     if (name !== '' && amount > 0) {
       addExpense();

@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Budget from '../budget/Budget';
 import './board.css';
 
 const Board = () => {
-  const [yearlyBudget, updateYearlyBudget] = useState();
-  const [budgetSet, setBudgetStatus] = useState(false);
+  const [yearlyBudget, updateYearlyBudget] = useState<number>(
+    localStorage.getItem('budget')
+      ? JSON.parse(localStorage.getItem('budget')!)
+      : 0
+  );
+  const [budgetSet, setBudgetStatus] = useState<boolean>(yearlyBudget > 0);
 
-  useEffect(() => {
-    const attemptSavedBudget = localStorage.getItem('budget')
-      ? JSON.parse(localStorage.getItem('budget'))
-      : '';
-    if (attemptSavedBudget !== '') setBudgetStatus(true);
-    updateYearlyBudget(attemptSavedBudget);
-  }, []);
-
-  const handleChange = ({ target }) => {
+  const handleChange = ({ target }: any) => {
     const { value } = target;
     updateYearlyBudget(value);
   };
@@ -22,12 +18,12 @@ const Board = () => {
   const resetBudget = () => {
     handleSubmit();
     localStorage.clear();
-    updateYearlyBudget('');
+    updateYearlyBudget(0);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e?: any) => {
     if (e) e.preventDefault();
-    if (yearlyBudget !== '') {
+    if (yearlyBudget) {
       localStorage.setItem('budget', JSON.stringify(yearlyBudget));
       setBudgetStatus((budgetSet) => !budgetSet);
     }
@@ -35,14 +31,14 @@ const Board = () => {
 
   return (
     <>
-      {budgetSet ? (
+      {budgetSet && (
         <section className="budget__wrapper">
           <aside className="budget__header--wrapper">
             <h1 className="budget__header">Yearly: {yearlyBudget}</h1>
             <div
               onClick={() => {
                 if (
-                  window.confirm('Are you sure you wish to reset the budget?')
+                  window.confirm('Are you sure you wish to restart the budget?')
                 )
                   resetBudget();
               }}
@@ -52,7 +48,8 @@ const Board = () => {
           </aside>
           <Budget yearlyBudget={yearlyBudget} />
         </section>
-      ) : (
+      )}
+      {!budgetSet && (
         <aside>
           <form className="form__wrapper" onSubmit={handleSubmit}>
             <h1 className="form__header">Budget Manager</h1>
